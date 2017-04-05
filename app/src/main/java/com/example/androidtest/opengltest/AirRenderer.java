@@ -69,6 +69,8 @@ public class AirRenderer implements GLSurfaceView.Renderer {
     }
     @Override
     public void onDrawFrame(GL10 gl) {
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
         GLES20.glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
 
@@ -76,10 +78,10 @@ public class AirRenderer implements GLSurfaceView.Renderer {
         GLES20.glDrawArrays(GLES20.GL_LINES, 6, 2);
 
         GLES20.glUniform4f(uColorLocation, 0, 0, 1.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_LINES, 8, 1);
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 8, 1);
 
         GLES20.glUniform4f(uColorLocation, 1.0f, 0, 0, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_LINES, 9, 1);
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 9, 1);
     }
 
     @Override
@@ -89,6 +91,8 @@ public class AirRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+        GLES20.glClearColor(0, 0,0,0);
+
         int vertexShaper = ShaperUtils.compileVertexShader(vertexShaperSource);
         int fragmentShaper = ShaperUtils.compileFragmentShader(fragmentShaperSource);
 
