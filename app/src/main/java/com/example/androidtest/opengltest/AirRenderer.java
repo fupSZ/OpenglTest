@@ -28,8 +28,8 @@ public class AirRenderer implements GLSurfaceView.Renderer {
     String fragmentShaperSource;
     private static final int POSITION_COMPONENT_COUNT = 2;
     public AirRenderer(Context context) {
-        float tableVertices[] = {
-                0, 0,
+        float[] tableVertices = {
+               /* 0, 0,
                 9f, 14f,
                 0, 14f,
 
@@ -40,7 +40,25 @@ public class AirRenderer implements GLSurfaceView.Renderer {
                 0f, 7f,
                 9f, 7f,
                 4.5f, 2f,
-                4.5f, 12f
+                4.5f, 12f*/
+
+                // Triangle 1
+                -0.5f, -0.5f,
+                0.5f,  0.5f,
+                -0.5f,  0.5f,
+
+                // Triangle 2
+                -0.5f, -0.5f,
+                0.5f, -0.5f,
+                0.5f,  0.5f,
+
+                // Line 1
+                -0.5f, 0f,
+                0.5f, 0f,
+
+                // Mallets
+                0f, -0.25f,
+                0f,  0.25f
         };
 
         vertexData = ByteBuffer.allocateDirect(tableVertices.length * BYTE_PER_FLOAT).order(ByteOrder.nativeOrder()).asFloatBuffer();
