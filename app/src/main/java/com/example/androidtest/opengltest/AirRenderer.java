@@ -15,17 +15,15 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by fup on 2017/4/5.
  */
-public class AirRenderer implements GLSurfaceView.Renderer {
-    private static final boolean DEBUG = true;
-    private static final String TAG = "AirRenderer";
+public class AirRenderer extends BaseRenderer {
     private static final String U_COLOR = "u_Color";
-    private int uColorLocation;
     private static final String A_POSITION = "a_Position";
+    private int uColorLocation;
+
     private int aPositionLocation;
-    private final FloatBuffer vertexData;
+    private FloatBuffer vertexData;
     private static final int BYTE_PER_FLOAT = 4;
-    String vertexShaperSource;
-    String fragmentShaperSource;
+
     private static final int POSITION_COMPONENT_COUNT = 2;
     public AirRenderer(Context context) {
         float[] tableVertices = {
@@ -68,7 +66,7 @@ public class AirRenderer implements GLSurfaceView.Renderer {
         fragmentShaperSource = TextResourceReader.readTextFromResource(context, R.raw.simple_fragment_shaper);
     }
     @Override
-    public void onDrawFrame(GL10 gl) {
+    public void onBaseDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         GLES20.glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
@@ -85,12 +83,12 @@ public class AirRenderer implements GLSurfaceView.Renderer {
     }
 
     @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
+    public void onBaseSurfaceChanged(GL10 gl, int width, int height) {
 
     }
 
     @Override
-    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+    public void onBaseSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0, 0,0,0);
 
         int vertexShaper = ShaperUtils.compileVertexShader(vertexShaperSource);
